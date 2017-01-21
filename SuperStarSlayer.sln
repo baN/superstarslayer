@@ -1,14 +1,18 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-
+Project("{0B82D146-A6F0-B0F6-E69F-033753CDBD74}") = "SuperStarSlayer", "Assembly-CSharp.csproj", "{95BCBE00-D1B9-4F6B-655F-90E0D428860A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-
+		{95BCBE00-D1B9-4F6B-655F-90E0D428860A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95BCBE00-D1B9-4F6B-655F-90E0D428860A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95BCBE00-D1B9-4F6B-655F-90E0D428860A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95BCBE00-D1B9-4F6B-655F-90E0D428860A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
