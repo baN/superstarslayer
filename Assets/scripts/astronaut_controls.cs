@@ -12,12 +12,17 @@ public class astronaut_controls : MonoBehaviour {
 	private Transform target; //next planet to jump to
 	private Transform darkside; //should always be going to the darkside unless jumping.
 	private Vector3 initialPosition; 
-
+	private AudioSource[] sounds;
+	private AudioSource deathSound;
+	private AudioSource jumpSound;
 
 	// Use this for initialization
 	void Start () {
 		//set astronauts initial position saved so when she dies, it resets here.
 		initialPosition = transform.position;
+		sounds = GetComponents <AudioSource>();
+		deathSound = sounds [0];
+		jumpSound = sounds [1];
 	}
 
 	// Update is called once per frame
@@ -25,6 +30,7 @@ public class astronaut_controls : MonoBehaviour {
 		if (died) {
 			//lose all sword pieces, turn off display, return to original position, don't move anywhere, reset targets.
 			ResetSwordCollection ();
+			PlayDeathSound ();
 			Invisible (true);
 			ResetPositionToInitial ();
 			died = false;
@@ -85,7 +91,10 @@ public class astronaut_controls : MonoBehaviour {
 	}
 
 	public void PlayJumpingSound(){
-		gameObject.GetComponent<AudioSource> ().Play ();
+		jumpSound.Play ();
+	}
+	public void PlayDeathSound(){
+		deathSound.Play();
 	}
 
 	public void MoveTo(Vector3 source, Vector3 destination){
