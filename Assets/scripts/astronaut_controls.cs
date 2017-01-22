@@ -16,24 +16,24 @@ public class astronaut_controls : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButton (0)) {
-			Vector3 mousePos = Input.mousePosition;
+			Vector2 mousePos = Input.mousePosition;
 			target = GetPlanetClicked (mousePos);
 			_isJumping = true;
 		}
 		if (_isJumping && target) {
 			darkside = GetDarkside (target);
-			transform.position = Vector3.MoveTowards (transform.position, target.position, .10f);
+			transform.position = Vector2.MoveTowards (transform.position, target.position, .10f);
 		}
 		if (_isDarkside && darkside) {
 			//go to the darkside
-			transform.position = Vector3.MoveTowards (transform.position, darkside.position, .10f);
+			transform.position = Vector2.MoveTowards (transform.position, darkside.position, .10f);
 		}
 
 
 	}
 
 	//when astronaut lands on object (planet)
-	void OnCollisionEnter (Collision col)
+	void OnCollisionEnter2D (Collision2D col)
 	{
 		if (col.gameObject.name == "planet_darkside") {
 			_isDarkside = false;
@@ -50,11 +50,11 @@ public class astronaut_controls : MonoBehaviour {
 	}
 
 	//Returns the object clicked on
-	private Transform GetPlanetClicked(Vector3 mousePos){
-		Ray ray = Camera.main.ScreenPointToRay (mousePos);
-		RaycastHit hit;
-		if (Physics.Raycast (ray, out hit, 100)) {
-			Debug.Log (hit.transform.gameObject.name);
+	private Transform GetPlanetClicked(Vector2 mousePos){
+		Vector3 ray = Camera.main.ScreenToWorldPoint (mousePos);
+		RaycastHit2D hit = Physics2D.Raycast (ray, Vector2.zero);
+		if (hit.collider != null) {
+			Debug.Log (hit.collider.gameObject.name);
 			return hit.transform;
 		}
 		return null;
