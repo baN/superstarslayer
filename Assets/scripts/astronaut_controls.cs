@@ -20,11 +20,9 @@ public class astronaut_controls : MonoBehaviour {
 			_isJumping = true;
 		}
 
-		if (_isJumping) {
-			Debug.Log ("Jumping");
+		if (_isJumping && target) {
 			transform.position = Vector3.MoveTowards (transform.position, target.position, .10f);
 		}
-
 
 
 	}

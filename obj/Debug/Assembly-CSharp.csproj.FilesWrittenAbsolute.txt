@@ -19,3 +19,5 @@
 /Users/tintin/unity/SuperStarSlayer/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/tintin/unity/SuperStarSlayer/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/tintin/unity/SuperStarSlayer/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/tintin/unity/SuperStarSlayer/Temp/bin/Debug/UnityEngine.Advertisements.dll
+/Users/tintin/unity/SuperStarSlayer/Temp/bin/Debug/UnityEngine.Purchasing.dll
