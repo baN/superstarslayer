@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{95BCBE00-D1B9-4F6B-655F-90E0D428860A}</ProjectGuid>
+    <ProjectGuid>{AD70C696-4A4F-2D9D-C108-209388192D0F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -46,8 +46,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\nobounce.cs" />
-     <Compile Include="Assets\scripts\astronaut_controls.cs" />
+     <Compile Include="Assets\Scripts\BulletCollisionHandler.cs" />
+     <Compile Include="Assets\Scripts\PickupSword.cs" />
+     <Compile Include="Assets\Scripts\UVWaveRadius.cs" />
+     <Compile Include="Assets\Scripts\WaveEmission.cs" />
+     <Compile Include="Assets\Scripts\astronaut_controls.cs" />
+     <Compile Include="Assets\Scripts\camerafollow.cs" />
+     <Compile Include="Assets\SwordPiece1.cs" />
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
  </Reference>

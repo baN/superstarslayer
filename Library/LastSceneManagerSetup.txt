@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/SuperStarSlayer_scene.unity
+- path: Assets/Scenes/Level1.unity
   isLoaded: 1
   isActive: 1
