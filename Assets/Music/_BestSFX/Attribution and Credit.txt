@@ -1,0 +1,31 @@
+SOUND EFFECTS:
+
+1 - death.mp3 (fire blast 1)
+
+	Attribution: Some of the sounds in this project were created by ViRiX Dreamcore (David Mckee) www.soundcloud.com/virix
+
+2 - starexplosion.wav (space laser)
+
+	Author: bart
+
+3 - swordpiece.wav (metal-ringing.wav)
+
+	Author: artisticdude
+
+4 - space-sword-slash.mp3 (rifleprimary2.ogg)
+
+	Author: Skorpio
+
+5 - spacejump.mp3 (laserfire1)
+
+	Attribution: 
+	K.L.Jonasson, Winnipeg, Canada. Triki Minut Interactive www.trikiminut.com
+
+
+MUSIC:
+
+0 - The Complex.mp3
+
+	Attribution: The Complex Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0 License
+http://creativecommons.org/licenses/by/3.0/
