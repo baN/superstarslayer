@@ -67,6 +67,7 @@ public class astronaut_controls : MonoBehaviour {
 
 
 	}
+		
 
 	//when astronaut hits something 2D.
 	void OnCollisionEnter2D (Collision2D col)
@@ -76,18 +77,20 @@ public class astronaut_controls : MonoBehaviour {
 			died = true;
 		}
 		//-----TODO: Toby, please fill in the TODO items below
-		if (col.gameObject.name == "TODO: name of the sword piece object 1 in unity") {
-			Debug.Log ("Astronaut collected sword piece -> 1");
+		if (col.gameObject.name == "sword_top") {
 			PlaySwordCollectedSound ();
 			_hasBladeTop = true;
+			Debug.Log ("Has sword_top");
 		}
-		if (col.gameObject.name == "TODO: name of sword piece object 2") {
+		if (col.gameObject.name == "sword_low") {
 			PlaySwordCollectedSound ();
-			Debug.Log ("Astronaut collected sword piece -> 2");
+			_hasBladeLow = true;
+			Debug.Log ("Has sword_low");
 		}
-		if (col.gameObject.name == "TODO: sword-piece-object name 3") {
+		if (col.gameObject.name == "sword_hilt") {
 			PlaySwordCollectedSound ();
-			Debug.Log ("Astronaut collected sword piece -> 2");
+			_hasHilt = true;
+			Debug.Log ("Has hilt");
 		}
 		//---------
 		else {

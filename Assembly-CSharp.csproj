@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BulletCollisionHandler.cs" />
      <Compile Include="Assets\Scripts\PickupSword.cs" />
+     <Compile Include="Assets\Scripts\PickupSwords.cs" />
      <Compile Include="Assets\Scripts\UVWaveRadius.cs" />
      <Compile Include="Assets\Scripts\WaveEmission.cs" />
      <Compile Include="Assets\Scripts\astronaut_controls.cs" />
