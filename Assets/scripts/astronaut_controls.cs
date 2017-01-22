@@ -23,6 +23,7 @@ public class astronaut_controls : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (died) {
+			//lose all sword pieces, turn off display, return to original position, don't move anywhere, reset targets.
 			ResetSwordCollection ();
 			Invisible (true);
 			ResetPositionToInitial ();
@@ -35,6 +36,7 @@ public class astronaut_controls : MonoBehaviour {
 		}
 		if (_hasBladeTop && _hasBladeLow && _hasHilt) {
 			//Defeat the sun stage, switch the sprite to holding the sword
+			_beastMode = true;
 
 
 		}
@@ -42,6 +44,7 @@ public class astronaut_controls : MonoBehaviour {
 			Vector2 mousePos = Input.mousePosition;
 			target = GetPlanetClicked (mousePos);
 			_isJumping = true;
+			PlayJumpingSound ();
 		}
 		if (_isJumping && target) {
 			//planet is selected, start intial jump towards that planet
@@ -81,6 +84,10 @@ public class astronaut_controls : MonoBehaviour {
 		}
 	}
 
+	public void PlayJumpingSound(){
+		gameObject.GetComponent<AudioSource> ().Play ();
+	}
+
 	public void MoveTo(Vector3 source, Vector3 destination){
 		transform.position = Vector2.MoveTowards (source, destination, .10f);
 	}
@@ -101,6 +108,7 @@ public class astronaut_controls : MonoBehaviour {
 			sr.enabled = invis;
 	}
 
+	//return darkside of planet's position.
 	private Transform GetDarkside(Transform planet){
 		return planet.FindChild ("planet_darkside");
 	}
