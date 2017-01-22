@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class astronaut_controls : MonoBehaviour {
-	public float speed;
 	private bool _isJumping;
 	private Transform target; //next planet to jump to
+
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +15,6 @@ public class astronaut_controls : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButton (0)) {
-			Debug.Log ("Pressed the left mouse button!");
 			Vector3 mousePos = Input.mousePosition;
 			target = GetPlanetClicked (mousePos);
 			_isJumping = true;
@@ -23,10 +22,17 @@ public class astronaut_controls : MonoBehaviour {
 
 		if (_isJumping) {
 			Debug.Log ("Jumping");
-			float step = speed * Time.deltaTime;
 			transform.position = Vector3.MoveTowards (transform.position, target.position, .10f);
 		}
 
+
+
+	}
+
+	void OnCollisionEnter (Collision col)
+	{
+		_isJumping = false;
+		Debug.Log ("Stopped jumping");
 	}
 
 	private Transform GetPlanetClicked(Vector3 mousePos){
