@@ -24,9 +24,7 @@ public class astronaut_controls : MonoBehaviour {
 		if (_isJumping) {
 			Debug.Log ("Jumping");
 			float step = speed * Time.deltaTime;
-			transform.position = Vector3.MoveTowards (transform.position, target.position, step);
-			Debug.Log ("Transform.position:" + transform.position.x + "," + transform.position.y);
-			Debug.Log ("TARGET.position:" + target.position.x + "," + target.position.y);
+			transform.position = Vector3.MoveTowards (transform.position, target.position, .10f);
 		}
 
 	}
@@ -40,23 +38,5 @@ public class astronaut_controls : MonoBehaviour {
 		}
 		return null;
 	}
-
-
-
-
-	private Transform GetNearestPlanet(Transform[] planets){
-		Transform tMin = null;
-		float minDist = Mathf.Infinity;
-		Vector3 currentPos = transform.position;
-
-		foreach (Transform t in planets) {
-			//distance between current planet and astronaut
-			float dist = Vector3.Distance (t.position, currentPos);
-			if (dist < minDist) {
-				tMin = t; //new nearest planet
-				minDist = dist; //new nearest distance
-			}
-		}
-		return tMin; //return nearest planet
-	}
+		
 }
