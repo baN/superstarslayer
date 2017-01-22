@@ -15,6 +15,8 @@ public class astronaut_controls : MonoBehaviour {
 	private AudioSource[] sounds;
 	private AudioSource deathSound;
 	private AudioSource jumpSound;
+	private AudioSource swordCollectedSound;
+
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +25,7 @@ public class astronaut_controls : MonoBehaviour {
 		sounds = GetComponents <AudioSource>();
 		deathSound = sounds [0];
 		jumpSound = sounds [1];
+		swordCollectedSound = sounds [2];
 	}
 
 	// Update is called once per frame
@@ -75,12 +78,15 @@ public class astronaut_controls : MonoBehaviour {
 		//-----TODO: Toby, please fill in the TODO items below
 		if (col.gameObject.name == "TODO: name of the sword piece object 1 in unity") {
 			Debug.Log ("Astronaut collected sword piece -> 1");
+			PlaySwordCollectedSound ();
 			_hasBladeTop = true;
 		}
 		if (col.gameObject.name == "TODO: name of sword piece object 2") {
+			PlaySwordCollectedSound ();
 			Debug.Log ("Astronaut collected sword piece -> 2");
 		}
 		if (col.gameObject.name == "TODO: sword-piece-object name 3") {
+			PlaySwordCollectedSound ();
 			Debug.Log ("Astronaut collected sword piece -> 2");
 		}
 		//---------
@@ -95,6 +101,9 @@ public class astronaut_controls : MonoBehaviour {
 	}
 	public void PlayDeathSound(){
 		deathSound.Play();
+	}
+	public void PlaySwordCollectedSound(){
+		swordCollectedSound.Play ();
 	}
 
 	public void MoveTo(Vector3 source, Vector3 destination){
