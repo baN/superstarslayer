@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class astronaut_controls : MonoBehaviour {
-	public bool _hasBladeTop;
-	public bool _hasBladeLow;
-	public bool _hasHilt;
+	public bool _hasBladeTop = false;
+	public bool _hasBladeLow = false;
+	public bool _hasHilt = false;
+	public bool _beastMode = false; //redundant if has all the pieces.
 	private bool _isJumping;
 	private bool died = false;
 	private Transform target; //next planet to jump to
@@ -15,6 +16,7 @@ public class astronaut_controls : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		//set astronauts initial position saved so when she dies, it resets here.
 		initialPosition = transform.position;
 	}
 
@@ -29,6 +31,11 @@ public class astronaut_controls : MonoBehaviour {
 			target = null;
 			darkside = null;
 			MoveTo (transform.position, initialPosition);
+
+		}
+		if (_hasBladeTop && _hasBladeLow && _hasHilt) {
+			//Defeat the sun stage, switch the sprite to holding the sword
+
 
 		}
 		if (Input.GetMouseButton (0)) {
@@ -56,6 +63,18 @@ public class astronaut_controls : MonoBehaviour {
 			Debug.Log ("Astronaut was hit by a UVWave");
 			died = true;
 		}
+		//-----TODO: Toby, please fill in the TODO items below
+		if (col.gameObject.name == "TODO: name of the sword piece object 1 in unity") {
+			Debug.Log ("Astronaut collected sword piece -> 1");
+			_hasBladeTop = true;
+		}
+		if (col.gameObject.name == "TODO: name of sword piece object 2") {
+			Debug.Log ("Astronaut collected sword piece -> 2");
+		}
+		if (col.gameObject.name == "TODO: sword-piece-object name 3") {
+			Debug.Log ("Astronaut collected sword piece -> 2");
+		}
+		//---------
 		else {
 			_isJumping = false; //stop going to the planet
 			Debug.Log ("Stopped jumping");
