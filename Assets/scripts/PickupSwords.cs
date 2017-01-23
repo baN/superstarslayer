@@ -6,10 +6,15 @@ using UnityEngine;
 * Assign this script to all sword pieces.
 */
 public class PickupSwords : MonoBehaviour {
+	private SpriteRenderer sr;
+	private CircleCollider2D cc;
+	private GameObject astronaut;
+
 
 	// Use this for initialization
 	void Start () {
-		
+		sr = gameObject.GetComponent<SpriteRenderer> ();
+		cc = gameObject.GetComponent<CircleCollider2D> ();
 	}
 	
 	// Update is called once per frame
@@ -21,10 +26,13 @@ public class PickupSwords : MonoBehaviour {
 	{
 		if (col.gameObject.name == "SpaceBabe") {
 			//Destroy (gameObject);
-			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer> ();
 			sr.enabled = false;
-			CircleCollider2D cc = gameObject.GetComponent<CircleCollider2D> ();
 			cc.enabled = false;
 		}
+	}
+
+	public void Respawn(){
+		sr.enabled = true;
+		cc.enabled = true;
 	}
 }

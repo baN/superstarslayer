@@ -13,5 +13,9 @@ public class camerafollow : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.position = new Vector3 (followTarget.position.x, followTarget.position.y, transform.position.z);
+
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			Application.Quit();
+		}
 	}
 }

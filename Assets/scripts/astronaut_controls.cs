@@ -7,8 +7,10 @@ public class astronaut_controls : MonoBehaviour {
 	public bool _hasBladeLow = false;
 	public bool _hasHilt = false;
 	public bool _beastMode = false; //redundant if has all the pieces.
+	public PickupSwords swordScript;
+
 	private bool _isJumping;
-	private bool died = false;
+	public bool died = false;
 	private Transform target; //next planet to jump to
 	private Transform darkside; //should always be going to the darkside unless jumping.
 	private Vector3 initialPosition; 

@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{0B82D146-A6F0-B0F6-E69F-033753CDBD74}") = "SuperStarSlayer", "Assembly-CSharp.csproj", "{95BCBE00-D1B9-4F6B-655F-90E0D428860A}"
+Project("{EFDC8E4B-A20C-6FD0-43F5-1DE1DEF0FE6D}") = "superstarslayer", "Assembly-CSharp.csproj", "{EA073A4A-9413-3488-B9DB-C491CC9D43F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{95BCBE00-D1B9-4F6B-655F-90E0D428860A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95BCBE00-D1B9-4F6B-655F-90E0D428860A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95BCBE00-D1B9-4F6B-655F-90E0D428860A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95BCBE00-D1B9-4F6B-655F-90E0D428860A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA073A4A-9413-3488-B9DB-C491CC9D43F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA073A4A-9413-3488-B9DB-C491CC9D43F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA073A4A-9413-3488-B9DB-C491CC9D43F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA073A4A-9413-3488-B9DB-C491CC9D43F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
