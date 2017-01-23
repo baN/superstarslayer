@@ -19,7 +19,12 @@ public class PickupSwords : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
-		if (col.gameObject.name == "SpaceBabe")
-			Destroy (gameObject);
+		if (col.gameObject.name == "SpaceBabe") {
+			//Destroy (gameObject);
+			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer> ();
+			sr.enabled = false;
+			CircleCollider2D cc = gameObject.GetComponent<CircleCollider2D> ();
+			cc.enabled = false;
+		}
 	}
 }
