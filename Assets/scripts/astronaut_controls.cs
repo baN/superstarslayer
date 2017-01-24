@@ -7,7 +7,9 @@ public class astronaut_controls : MonoBehaviour {
 	public bool _hasBladeLow = false;
 	public bool _hasHilt = false;
 	public bool _beastMode = false; //redundant if has all the pieces.
-	public PickupSwords swordScript;
+	public GameObject bladeTop;
+	public GameObject bladeLow;
+	public GameObject hilt;
 
 	private bool _isJumping;
 	public bool died = false;
@@ -17,7 +19,6 @@ public class astronaut_controls : MonoBehaviour {
 	private AudioSource[] sounds;
 	private AudioSource deathSound;
 	private AudioSource jumpSound;
-	private AudioSource swordCollectedSound;
 
 
 	// Use this for initialization
@@ -27,7 +28,6 @@ public class astronaut_controls : MonoBehaviour {
 		sounds = GetComponents <AudioSource>();
 		deathSound = sounds [0];
 		jumpSound = sounds [1];
-		swordCollectedSound = sounds [2];
 	}
 
 	// Update is called once per frame
@@ -78,23 +78,18 @@ public class astronaut_controls : MonoBehaviour {
 			Debug.Log ("Astronaut was hit by a UVWave");
 			died = true;
 		}
-		//-----TODO: Toby, please fill in the TODO items below
 		if (col.gameObject.name == "sword_top") {
-			PlaySwordCollectedSound ();
 			_hasBladeTop = true;
 			Debug.Log ("Has sword_top");
 		}
 		if (col.gameObject.name == "sword_low") {
-			PlaySwordCollectedSound ();
 			_hasBladeLow = true;
 			Debug.Log ("Has sword_low");
 		}
 		if (col.gameObject.name == "sword_hilt") {
-			PlaySwordCollectedSound ();
 			_hasHilt = true;
 			Debug.Log ("Has hilt");
 		}
-		//---------
 		else {
 			_isJumping = false; //stop going to the planet
 			Debug.Log ("Stopped jumping");
@@ -107,9 +102,6 @@ public class astronaut_controls : MonoBehaviour {
 	public void PlayDeathSound(){
 		deathSound.Play();
 	}
-	public void PlaySwordCollectedSound(){
-		swordCollectedSound.Play ();
-	}
 
 	public void MoveTo(Vector3 source, Vector3 destination){
 		transform.position = Vector2.MoveTowards (source, destination, .10f);
@@ -119,6 +111,7 @@ public class astronaut_controls : MonoBehaviour {
 		_hasBladeLow = false;
 		_hasBladeTop = false;
 		_hasHilt = false;
+		hilt.GetComponent<PickupSwords> ().Respawn ();
 	}
 
 	public void ResetPositionToInitial(){
