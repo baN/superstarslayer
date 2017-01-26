@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+//using UnityEditor;
 using System.Linq;
 
 public class astronaut_controls : MonoBehaviour {
@@ -165,13 +165,22 @@ public class astronaut_controls : MonoBehaviour {
 
 	/*
 	*  Function extracts the png files and converts them into sprites, storing them in the parameter store passed in
+	*  
 	*/
 	private void InitializeSpritesArray(string[] location, ref List<Sprite> store){ //WARNING only works for png files!!---
-		foreach (string file in location) {	//load one of the files at a time
-			Object[] data = AssetDatabase.LoadAllAssetsAtPath(file); //grab all the pieces of the file
-			Sprite s = (Sprite)data[1];
-			store.Add(s); //add the extracted sprite to the list
-		}
+//		foreach (string file in location) {	//load one of the files at a time
+//			Object[] data = AssetDatabase.LoadAllAssetsAtPath(file); //grab all the pieces of the file
+//			Sprite s = (Sprite)data[1];
+//			store.Add(s); //add the extracted sprite to the list
+//		}
+
+		SpriteRenderer sr;
+		sr = GameObject.Find ("imploda_00_holder").GetComponent<SpriteRenderer>();
+		store.Add (sr.sprite);
+		sr = GameObject.Find ("imploda_hurt_holder").GetComponent<SpriteRenderer>();
+		store.Add (sr.sprite);
+		sr = GameObject.Find ("imploda_sword_holder").GetComponent<SpriteRenderer>();
+		store.Add (sr.sprite);
 	}
 
 	//return darkside of planet's position.
