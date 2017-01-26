@@ -9,12 +9,14 @@ public class astronaut_controls : MonoBehaviour {
 	public bool _hasBladeLow = false;
 	public bool _hasHilt = false;
 	public bool _beastMode = false; //redundant if has all the pieces.
+	public bool died = false;
 	public GameObject bladeTop;
 	public GameObject bladeLow;
 	public GameObject hilt;
+	public float respawn_time = 2.0f;
 
+	private bool _isWaiting = false; //set this inside a coroutine to wait using the _isWaiting flag to true. After it's done waiting, set the _isWaiting back to false.
 	private bool _isJumping;
-	public bool died = false;
 	private Transform target; //next planet to jump to
 	private Transform darkside; //should always be going to the darkside unless jumping.
 	private Vector3 initialPosition; 
@@ -25,7 +27,7 @@ public class astronaut_controls : MonoBehaviour {
 	//Place the path to each png file located in Assets for imploda here
 	private string[] implodaAssetsLocation = {"Assets/Art/Imploda_Play/SSS_Imploda-00.png", "Assets/Art/Imploda_Play/SSS_Imploda-Hurt.png", "Assets/Art/Imploda_Play/SSS_Imploda-Sword.png"};
 	private SpriteRenderer selfSpriteRenderer;
-	private bool _isWaiting = false;
+
 
 	// Use this for initialization
 	void Start () {
@@ -47,9 +49,7 @@ public class astronaut_controls : MonoBehaviour {
 
 			if (_hasBladeTop && _hasBladeLow && _hasHilt) {
 				//Defeat the sun stage, switch the sprite to holding the sword
-				_beastMode = true;
-
-
+				SwitchSpriteBeast();
 			}
 			if (Input.GetMouseButton (0)) {
 				Vector2 mousePos = Input.mousePosition;
@@ -79,11 +79,13 @@ public class astronaut_controls : MonoBehaviour {
 
 	}
 		
+	/**
+	 *  Theorhetically this function will return here until seconds is up and finish the rest of this function.
+	 */
 	private IEnumerator diedPart2()
 	{
 		_isWaiting = true;
-		// process pre-yield
-		yield return new WaitForSeconds( 3.0f );  //Theorhetically this function will return here until seconds is up and finish the rest of this function.
+		yield return new WaitForSeconds( respawn_time ); 
 		// finish up the death transaction
 		Invisible (true);
 		ResetPositionToInitial ();
@@ -93,7 +95,6 @@ public class astronaut_controls : MonoBehaviour {
 		darkside = null;
 		MoveTo (transform.position, initialPosition);
 		SwitchSpriteNormal ();
-
 		_isWaiting = false; //return state so Update() can switch back to normal
 	}
 
@@ -155,6 +156,9 @@ public class astronaut_controls : MonoBehaviour {
 	}
 	private void SwitchSpriteNormal(){
 		selfSpriteRenderer.sprite = sprites [0];
+	}
+	private void SwitchSpriteBeast(){
+		selfSpriteRenderer.sprite = sprites [2];
 	}
 
 	/*
