@@ -142,6 +142,8 @@ public class astronaut_controls : MonoBehaviour {
 		_hasBladeTop = false;
 		_hasHilt = false;
 		hilt.GetComponent<PickupSwords> ().Respawn ();
+		bladeLow.GetComponent<PickupSwords> ().Respawn ();
+		bladeTop.GetComponent<PickupSwords> ().Respawn ();
 	}
 	public void ResetPositionToInitial(){
 		transform.position = initialPosition;
