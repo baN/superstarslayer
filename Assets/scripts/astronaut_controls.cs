@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using System.Linq;
 
 public class astronaut_controls : MonoBehaviour {
 	public bool _hasBladeTop = false;
@@ -19,57 +21,81 @@ public class astronaut_controls : MonoBehaviour {
 	private AudioSource[] sounds;
 	private AudioSource deathSound;
 	private AudioSource jumpSound;
-
+	private List<Sprite> sprites;
+	//Place the path to each png file located in Assets for imploda here
+	private string[] implodaAssetsLocation = {"Assets/Art/Imploda_Play/SSS_Imploda-00.png", "Assets/Art/Imploda_Play/SSS_Imploda-Hurt.png", "Assets/Art/Imploda_Play/SSS_Imploda-Sword.png"};
+	private SpriteRenderer selfSpriteRenderer;
+	private bool _isWaiting = false;
 
 	// Use this for initialization
 	void Start () {
 		//set astronauts initial position saved so when she dies, it resets here.
+		selfSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 		initialPosition = transform.position;
 		sounds = GetComponents <AudioSource>();
 		deathSound = sounds [0];
 		jumpSound = sounds [1];
+		sprites = new List<Sprite>();
+		InitializeSpritesArray (implodaAssetsLocation, ref sprites);
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (died) {
-			//lose all sword pieces, turn off display, return to original position, don't move anywhere, reset targets.
-			ResetSwordCollection ();
-			PlayDeathSound ();
-			Invisible (true);
-			ResetPositionToInitial ();
-			died = false;
-			_isJumping = false;
-			target = null;
-			darkside = null;
-			MoveTo (transform.position, initialPosition);
 
-		}
-		if (_hasBladeTop && _hasBladeLow && _hasHilt) {
-			//Defeat the sun stage, switch the sprite to holding the sword
-			_beastMode = true;
+		if (_isWaiting == false) {
 
 
-		}
-		if (Input.GetMouseButton (0)) {
-			Vector2 mousePos = Input.mousePosition;
-			target = GetPlanetClicked (mousePos);
-			_isJumping = true;
-			PlayJumpingSound ();
-		}
-		if (_isJumping && target) {
-			//planet is selected, start intial jump towards that planet
-			darkside = GetDarkside (target);
-			MoveTo(transform.position, target.position);
-		}
-		if (darkside) {
-			//go to the darkside if planet parent is selected.
-			MoveTo(transform.position, darkside.position);
-		}
+			if (_hasBladeTop && _hasBladeLow && _hasHilt) {
+				//Defeat the sun stage, switch the sprite to holding the sword
+				_beastMode = true;
 
+
+			}
+			if (Input.GetMouseButton (0)) {
+				Vector2 mousePos = Input.mousePosition;
+				target = GetPlanetClicked (mousePos);
+				_isJumping = true;
+				PlayJumpingSound ();
+			}
+			if (_isJumping && target) {
+				//planet is selected, start intial jump towards that planet
+				darkside = GetDarkside (target);
+				MoveTo (transform.position, target.position);
+			}
+			if (darkside) {
+				//go to the darkside if planet parent is selected.
+				MoveTo (transform.position, darkside.position);
+			}
+
+			if (died) {
+				//lose all sword pieces, turn off display, return to original position, don't move anywhere, reset targets.
+				ResetSwordCollection ();
+				PlayDeathSound ();
+				SwitchSpriteHurt ();
+				StartCoroutine (diedPart2()); //wait for a bit
+			}
+
+		}
 
 	}
 		
+	private IEnumerator diedPart2()
+	{
+		_isWaiting = true;
+		// process pre-yield
+		yield return new WaitForSeconds( 3.0f );  //Theorhetically this function will return here until seconds is up and finish the rest of this function.
+		// finish up the death transaction
+		Invisible (true);
+		ResetPositionToInitial ();
+		died = false;
+		_isJumping = false;
+		target = null;
+		darkside = null;
+		MoveTo (transform.position, initialPosition);
+		SwitchSpriteNormal ();
+
+		_isWaiting = false; //return state so Update() can switch back to normal
+	}
 
 	//when astronaut hits something 2D.
 	void OnCollisionEnter2D (Collision2D col)
@@ -96,6 +122,8 @@ public class astronaut_controls : MonoBehaviour {
 		}
 	}
 
+
+	//-------- AUDIO-------
 	public void PlayJumpingSound(){
 		jumpSound.Play ();
 	}
@@ -107,21 +135,37 @@ public class astronaut_controls : MonoBehaviour {
 		transform.position = Vector2.MoveTowards (source, destination, .10f);
 	}
 
+	//----------- RESPAWN ---------
 	public void ResetSwordCollection(){
 		_hasBladeLow = false;
 		_hasBladeTop = false;
 		_hasHilt = false;
 		hilt.GetComponent<PickupSwords> ().Respawn ();
 	}
-
 	public void ResetPositionToInitial(){
 		transform.position = initialPosition;
 	}
-
 	public void Invisible(bool invis){
-		SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer> ();
-		if (sr != null)
-			sr.enabled = invis;
+		if (selfSpriteRenderer != null)
+			selfSpriteRenderer.enabled = invis;
+	}
+		
+	private void SwitchSpriteHurt(){
+		selfSpriteRenderer.sprite = sprites [1];
+	}
+	private void SwitchSpriteNormal(){
+		selfSpriteRenderer.sprite = sprites [0];
+	}
+
+	/*
+	*  Function extracts the png files and converts them into sprites, storing them in the parameter store passed in
+	*/
+	private void InitializeSpritesArray(string[] location, ref List<Sprite> store){ //WARNING only works for png files!!---
+		foreach (string file in location) {	//load one of the files at a time
+			Object[] data = AssetDatabase.LoadAllAssetsAtPath(file); //grab all the pieces of the file
+			Sprite s = (Sprite)data[1];
+			store.Add(s); //add the extracted sprite to the list
+		}
 	}
 
 	//return darkside of planet's position.
