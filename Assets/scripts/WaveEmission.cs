@@ -7,10 +7,10 @@ public class WaveEmission : MonoBehaviour {
 	public GameObject bullet;
 
 	public float spinSpeed;
-	public float bulletSpeed;
+	public float bulletSpeed= 1;
 	[Range(0,100)]
 	public int bulletCount;
-	public float waveLength = 29;
+	public float waveLength = 1;
 
 	private float bulletWait;//time between projectiles
 	private GameObject[] bulletArray;
@@ -20,7 +20,7 @@ public class WaveEmission : MonoBehaviour {
 	private int bulletIndex = 0;
 	// Use this for initialization
 	void Start () {
-		bulletWait = 10 / spinSpeed;
+		bulletWait = 20 / spinSpeed;
 		bulletArray = new GameObject[bulletCount];
 		loadBullets ();
 		InvokeRepeating ("shootWave",0,waveLength);

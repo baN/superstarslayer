@@ -45,7 +45,20 @@ public class astronaut_controls : MonoBehaviour {
 	void Update () {
 
 		if (_isWaiting == false) {
-
+			if (_hasHilt) {
+				if (_hasBladeTop)
+					SwitchSpriteHiltTop ();
+				else if (_hasBladeLow)
+					SwitchSpriteHiltLow ();
+				else
+					SwitchSpriteHilt ();
+			} else if (_hasBladeLow) {
+				if (_hasBladeTop)
+					SwitchSpriteLowTop ();
+				else
+					SwitchSpriteLow ();
+			} else if (_hasBladeTop)
+				SwitchSpriteTop ();
 
 			if (_hasBladeTop && _hasBladeLow && _hasHilt) {
 				//Defeat the sun stage, switch the sprite to holding the sword
@@ -98,7 +111,7 @@ public class astronaut_controls : MonoBehaviour {
 		_isWaiting = false; //return state so Update() can switch back to normal
 	}
 
-	//when astronaut hits something 2D.
+	//2D Collision detection...
 	void OnCollisionEnter2D (Collision2D col)
 	{
 		if (col.gameObject.name == "UVBullet(Clone)") {
@@ -116,6 +129,9 @@ public class astronaut_controls : MonoBehaviour {
 		if (col.gameObject.name == "sword_hilt") {
 			_hasHilt = true;
 			Debug.Log ("Has hilt");
+		}
+		if (col.gameObject.name == "UVBullet(Clone)") {
+			//ignore
 		}
 		else {
 			_isJumping = false; //stop going to the planet
@@ -162,7 +178,24 @@ public class astronaut_controls : MonoBehaviour {
 	private void SwitchSpriteBeast(){
 		selfSpriteRenderer.sprite = sprites [2];
 	}
-
+	private void SwitchSpriteHilt(){
+		selfSpriteRenderer.sprite = sprites [3];
+	}
+	private void SwitchSpriteHiltTop(){
+		selfSpriteRenderer.sprite = sprites [4];
+	}
+	private void SwitchSpriteHiltLow(){
+		selfSpriteRenderer.sprite = sprites [5];
+	}
+	private void SwitchSpriteLow(){
+		selfSpriteRenderer.sprite = sprites [6];
+	}
+	private void SwitchSpriteLowTop(){
+		selfSpriteRenderer.sprite = sprites [7];
+	}
+	private void SwitchSpriteTop(){
+		selfSpriteRenderer.sprite = sprites [8];
+	}
 	/*
 	*  Function extracts the png files and converts them into sprites, storing them in the parameter store passed in
 	*  
@@ -180,6 +213,18 @@ public class astronaut_controls : MonoBehaviour {
 		sr = GameObject.Find ("imploda_hurt_holder").GetComponent<SpriteRenderer>();
 		store.Add (sr.sprite);
 		sr = GameObject.Find ("imploda_sword_holder").GetComponent<SpriteRenderer>();
+		store.Add (sr.sprite);
+		sr = GameObject.Find ("imploda_sword_hilt").GetComponent<SpriteRenderer>();
+		store.Add (sr.sprite);
+		sr = GameObject.Find ("imploda_sword_hilt_top").GetComponent<SpriteRenderer>();
+		store.Add (sr.sprite);
+		sr = GameObject.Find ("imploda_sword_hilt_low").GetComponent<SpriteRenderer>();
+		store.Add (sr.sprite);
+		sr = GameObject.Find ("imploda_sword_low").GetComponent<SpriteRenderer>();
+		store.Add (sr.sprite);
+		sr = GameObject.Find ("imploda_sword_low_top").GetComponent<SpriteRenderer>();
+		store.Add (sr.sprite);
+		sr = GameObject.Find ("imploda_sword_top").GetComponent<SpriteRenderer>();
 		store.Add (sr.sprite);
 	}
 
