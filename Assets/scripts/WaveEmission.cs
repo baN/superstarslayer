@@ -7,7 +7,7 @@ public class WaveEmission : MonoBehaviour {
 	public GameObject bullet;
 
 	public float spinSpeed;
-	public float bulletSpeed= 1;
+	public float bulletSpeed;
 	[Range(0,100)]
 	public int bulletCount;
 	public float waveLength = 1;

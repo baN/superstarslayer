@@ -50,10 +50,12 @@
      <Compile Include="Assets\scripts\BulletCollisionHandler.cs" />
      <Compile Include="Assets\scripts\PickupSword.cs" />
      <Compile Include="Assets\scripts\PickupSwords.cs" />
+     <Compile Include="Assets\scripts\Spashfade.cs" />
      <Compile Include="Assets\scripts\UVWaveRadius.cs" />
      <Compile Include="Assets\scripts\WaveEmission.cs" />
      <Compile Include="Assets\scripts\astronaut_controls.cs" />
      <Compile Include="Assets\scripts\camerafollow.cs" />
+     <Compile Include="Assets\splashscreen.cs" />
      <None Include="Assets\Music\_BestSFX\Attribution and Credit.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
