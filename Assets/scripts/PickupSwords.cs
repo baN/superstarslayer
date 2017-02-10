@@ -8,8 +8,9 @@ using UnityEngine;
 public class PickupSwords : MonoBehaviour {
 	private SpriteRenderer sr;
 	private CircleCollider2D cc;
-	private GameObject astronaut;
+	private astronaut_controls astronaut;
 	private AudioSource swordCollectedSound;
+
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +31,14 @@ public class PickupSwords : MonoBehaviour {
 			sr.enabled = false;
 			cc.enabled = false;
 			PlaySwordCollectedSound ();
+			astronaut = col.gameObject.GetComponent<astronaut_controls> ();
+			if (this.gameObject.name == "sword_hilt")
+				astronaut._hasHilt = true;
+			else if(this.gameObject.name == "sword_top")
+				astronaut._hasBladeTop = true;
+			else if(this.gameObject.name == "sword_low")
+				astronaut._hasBladeLow = true;
+			
 		}
 	}
 

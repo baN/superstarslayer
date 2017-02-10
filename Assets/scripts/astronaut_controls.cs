@@ -118,18 +118,7 @@ public class astronaut_controls : MonoBehaviour {
 			Debug.Log ("Astronaut was hit by a UVWave");
 			died = true;
 		}
-		if (col.gameObject.name == "sword_top") {
-			_hasBladeTop = true;
-			Debug.Log ("Has sword_top");
-		}
-		if (col.gameObject.name == "sword_low") {
-			_hasBladeLow = true;
-			Debug.Log ("Has sword_low");
-		}
-		if (col.gameObject.name == "sword_hilt") {
-			_hasHilt = true;
-			Debug.Log ("Has hilt");
-		}
+
 		if (col.gameObject.name == "UVBullet(Clone)") {
 			//ignore
 		}
