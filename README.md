@@ -1,4 +1,5 @@
 # superstarslayer
+Global Game Jam: https://yurisen.itch.io/super-star-slayer-imploda
 
 Astronaut
 States:
